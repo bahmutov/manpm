@@ -1,0 +1,31 @@
+{
+  "name": "manpm",
+  "version": "1.0.0",
+  "description": "Shows the relevant part of NPM module's README file right in your terminal",
+  "main": "index.js",
+  "bin" :{
+    "manpm": "./bin/manpm.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahmutov/manpm.git"
+  },
+  "keywords": [
+    "man",
+    "manual",
+    "help",
+    "npm",
+    "utility",
+    "readme",
+    "cli"
+  ],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahmutov/manpm/issues"
+  },
+  "homepage": "https://github.com/bahmutov/manpm#readme"
+}
