@@ -13,6 +13,10 @@
     "pkgfiles": "pkgfiles",
     "size": "tarball=\"$(npm pack .)\"; wc -c \"${tarball}\"; tar tvf \"${tarball}\"; rm \"${tarball}\";"
   },
+  "files": [
+    "bin",
+    "index.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bahmutov/manpm.git"
