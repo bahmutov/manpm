@@ -2,6 +2,14 @@
 
 > Shows the relevant part of NPM module's README file right in your terminal
 
+    npm install -g manpm
+    manpm <package name>
+
+For example `manpm email-regex` will render the README from
+[email-regex](https://www.npmjs.com/package/email-regex) package in you terminal
+
+![manpm screenshot](images/manpm-screenshot.png)
+
 Inspired by [man-n](https://github.com/man-n/man-n) and
 [readme](https://www.npmjs.com/package/readme)
 

@@ -1,4 +1,21 @@
 #!/usr/bin/env node
 
-console.log('manpm arguments');
-console.log(process.argv);
+function noArguments() {
+  return process.argv.length < 3;
+}
+
+function showHelp() {
+  var join = require('path').join;
+  var pkg = require(join(__dirname, '..', 'package.json'));
+  console.log('%s@%s - %s', pkg.name, pkg.version, pkg.description);
+  console.log('use: %s <package name>', pkg.name);
+}
+
+if (noArguments()) {
+  showHelp();
+  process.exit(0);
+}
+
+var name = process.argv[2];
+var maNpm = require('..');
+maNpm({ name: name });

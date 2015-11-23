@@ -18,14 +18,14 @@ function maNpm(options) {
   la(check.object(options), 'missing input options');
   la(check.unemptyString(options.name), 'missing package name', options);
   log('fetching README for package', options.name);
-  return getReadme(options.name);
+  return getReadme(options.name)
+    .then(printMarkdown)
+    .catch(console.error.bind(console));
 }
 
 module.exports = maNpm;
 
 if (!module.parent) {
   log('stand alone demo');
-  maNpm({ name: 'obind' })
-    .then(printMarkdown)
-    .catch(console.error.bind(console));
+  maNpm({ name: 'obind' });
 }
