@@ -4,6 +4,16 @@ var check = require('check-more-types');
 var Promise = require('bluebird');
 var getReadme = Promise.promisify(require('get-package-readme'));
 
+var marked = require('marked');
+var TerminalMarkdown = require('marked-terminal');
+marked.setOptions({
+  renderer: new TerminalMarkdown()
+});
+
+function printMarkdown(md) {
+  console.log(marked(md));
+}
+
 function maNpm(options) {
   la(check.object(options), 'missing input options');
   la(check.unemptyString(options.name), 'missing package name', options);
@@ -16,6 +26,6 @@ module.exports = maNpm;
 if (!module.parent) {
   log('stand alone demo');
   maNpm({ name: 'obind' })
-    .then(console.log.bind(console))
+    .then(printMarkdown)
     .catch(console.error.bind(console));
 }
