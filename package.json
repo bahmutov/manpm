@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Shows the relevant part of NPM module's README file right in your terminal",
   "main": "index.js",
-  "bin" :{
+  "bin": {
     "manpm": "./bin/manpm.js"
   },
   "scripts": {
@@ -27,5 +27,14 @@
   "bugs": {
     "url": "https://github.com/bahmutov/manpm/issues"
   },
-  "homepage": "https://github.com/bahmutov/manpm#readme"
+  "homepage": "https://github.com/bahmutov/manpm#readme",
+  "dependencies": {
+    "bluebird": "3.0.5",
+    "check-more-types": "2.2.0",
+    "debug": "2.2.0",
+    "get-package-readme": "1.1.0",
+    "lazy-ass": "1.1.0",
+    "marked": "0.3.5",
+    "marked-terminal": "1.6.1"
+  }
 }

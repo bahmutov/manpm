@@ -2,7 +2,8 @@
 
 > Shows the relevant part of NPM module's README file right in your terminal
 
-Inspired by [man-n](https://github.com/man-n/man-n)
+Inspired by [man-n](https://github.com/man-n/man-n) and
+[readme](https://www.npmjs.com/package/readme)
 
 ## Install and use
 
