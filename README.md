@@ -10,8 +10,14 @@ For example `manpm email-regex` will render the README from
 
 ![manpm screenshot](images/manpm-screenshot.png)
 
-Inspired by [man-n](https://github.com/man-n/man-n) and
-[readme](https://www.npmjs.com/package/readme)
+Inspired by the following tools
+
+* [man-n](https://github.com/man-n/man-n)
+* [npm-man](https://github.com/eush77/npm-man)
+* [readme](https://www.npmjs.com/package/readme)
+
+I wanted something a little more API friendly, like finding and showing
+a README section that talked about a specific API method for example.
 
 ## Install and use
 
