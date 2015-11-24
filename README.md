@@ -18,13 +18,19 @@
 
     npm install -g manpm
     manpm <package name>
+    manpm <package name> [optional search text inside README]
 
 For example `manpm email-regex` will render the README from
 [email-regex](https://www.npmjs.com/package/email-regex) package in you terminal
 
 ![manpm screenshot](images/manpm-screenshot.png)
 
-Inspired by the following tools
+If search text is provided, only a section of the README file with that text
+(if found) will be displayed.
+
+![manpm search section](images/search-section.png)
+
+## Inspired by the following tools
 
 * [man-n](https://github.com/man-n/man-n)
 * [npm-man](https://github.com/eush77/npm-man)
@@ -32,14 +38,6 @@ Inspired by the following tools
 
 I wanted something a little more API friendly, like finding and showing
 a README section that talked about a specific API method for example.
-
-## Install and use
-
-    npm install -g manpm
-    manpm obind
-    # shows documentation for NPM package obind
-    manpm lodash pick
-    # shows README documentation for method pick in package lodash
 
 ### Small print
 
