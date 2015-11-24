@@ -1,6 +1,55 @@
 var log = require('debug')('manpm');
 var la = require('lazy-ass');
 var check = require('check-more-types');
+var marked = require('marked');
+var mdRenderer = require('marked-to-md');
+var renderer = mdRenderer(new marked.Renderer());
+var parser = new marked.Parser({ renderer: renderer });
+
+function markdownTokens(md) {
+  var tokens = marked.lexer(md);
+  return tokens;
+}
+
+function findSectionByHeader(search, tokens) {
+  la(check.unemptyString(search), 'missing search', search);
+  la(check.array(tokens), 'missing tokens', tokens);
+
+  search = search.toLowerCase();
+
+  var foundStart, foundEnd;
+
+  tokens.some(function (token, k) {
+    if (token.type !== 'heading' && !foundStart) {
+      return;
+    }
+    if (token.type === 'heading') {
+      var hasSearchText = token.text.toLowerCase().indexOf(search) !== -1;
+      // console.log('checking heading', k, token.text, 'has text?', hasSearchText);
+
+      if (check.not.defined(foundStart) && hasSearchText) {
+        foundStart = k;
+        return;
+      }
+      if (check.not.defined(foundStart) && !hasSearchText) {
+        return;
+      }
+      foundEnd = k;
+      return true;
+    }
+  });
+  if (check.not.defined(foundStart)) {
+    return [];
+  }
+  if (check.not.defined(foundEnd)) {
+    foundEnd = tokens.length;
+  }
+  // console.log('slicing from %d found end', foundStart, foundEnd);
+  var links = tokens.links;
+  var result = tokens.slice(foundStart, foundEnd);
+  result.links = links;
+  return result;
+}
 
 function findSection(options, md) {
   la(check.maybe.object(options), 'missing options', options);
@@ -11,6 +60,15 @@ function findSection(options, md) {
   var searchString = options.text || options.search;
   if (check.unemptyString(searchString)) {
     log('searching for markdown part that talks about', searchString);
+  }
+  if (!searchString) {
+    return md;
+  }
+
+  var tokens = markdownTokens(md);
+  var foundSectionByHeader = findSectionByHeader(searchString, tokens);
+  if (check.unemptyArray(foundSectionByHeader)) {
+    return parser.parse(foundSectionByHeader).trim();
   }
 
   return md;

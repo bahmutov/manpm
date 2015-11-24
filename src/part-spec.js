@@ -1,5 +1,56 @@
 var la = require('lazy-ass');
 var check = require('check-more-types');
+var partJs = require('path').join(__dirname, 'part.js');
+var describeIt = require('describe-it');
+var marked = require('marked');
+var quote = require('quote');
+
+describeIt(partJs, 'findSectionByHeader(search, tokens)', function () {
+  it('is a function', function () {
+    la(check.fn(this.findSectionByHeader));
+  });
+
+  it('finds section by text in the header', function () {
+    var text = [
+      '# foo is awesome',
+      'bar',
+      '# baz is worse',
+      'something else'
+    ].join('\n');
+    var tokens = marked.lexer(text);
+    var section = this.findSectionByHeader('foo', tokens);
+    la(check.unemptyArray(section), section);
+  });
+});
+
+describeIt(partJs, 'markdownTokens(md)', function () {
+  it('is a function', function () {
+    la(check.fn(this.markdownTokens));
+  });
+
+  it('expects single argument', function () {
+    la(this.markdownTokens.length === 1);
+  });
+
+  it('parses 2 paragraphs', function () {
+    var text = ['# p1', 'foo', '# p2', 'bar'].join('\n');
+    var tokens = this.markdownTokens(text);
+    la(check.array(tokens));
+    la(tokens.length === 4);
+
+    la(tokens[0].type === 'heading', tokens);
+    la(tokens[0].text === 'p1', tokens);
+
+    la(tokens[1].type === 'paragraph', tokens);
+    la(tokens[1].text === 'foo', tokens);
+
+    la(tokens[2].type === 'heading', tokens);
+    la(tokens[2].text === 'p2', tokens);
+
+    la(tokens[3].type === 'paragraph', tokens);
+    la(tokens[3].text === 'bar', tokens);
+  });
+});
 
 /* global describe, it */
 describe('find section', function () {
@@ -26,5 +77,19 @@ describe('find section', function () {
     var search = { text: 'baz' };
     var found = find(search, text);
     la(found === text, 'found', found);
+  });
+
+  it('finds first section after header with text', function () {
+    var text = [
+      '# foo is awesome',
+      'bar',
+      '# baz is worse',
+      'something else'
+    ];
+    var search = { text: 'foo' };
+    var found = find(search, text.join('\n'));
+    la(check.unemptyString(found));
+    var firstSection = text.slice(0, 2).join('\n');
+    la(found === firstSection, 'found\n' + quote(found), '\ninstead of\n' + quote(firstSection));
   });
 });
