@@ -7,8 +7,8 @@
     "manpm": "./bin/manpm.js"
   },
   "scripts": {
-    "test": "npm run lint",
-    "lint": "eslint index.js bin/manpm.js",
+    "test": "mocha src/*-spec.js",
+    "lint": "eslint src/*.js bin/*.js",
     "commit": "git-issues && commit-wizard",
     "issues": "git-issues",
     "pkgfiles": "pkgfiles",
