@@ -2,6 +2,20 @@
 
 > Shows the relevant part of NPM module's README file right in your terminal
 
+[![NPM][manpm-icon] ][manpm-url]
+
+[![Circle CI][ci-badge] ][ci-url]
+[![semantic-release][semantic-image] ][semantic-url]
+
+[manpm-icon]: https://nodei.co/npm/manpm.png?downloads=true
+[manpm-url]: https://npmjs.org/package/manpm
+[ci-badge]: https://circleci.com/gh/bahmutov/manpm.svg?style=svg
+[ci-url]: https://circleci.com/gh/bahmutov/manpm
+[semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-url]: https://github.com/semantic-release/semantic-release
+
+## Install and use
+
     npm install -g manpm
     manpm <package name>
 
