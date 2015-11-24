@@ -1,7 +1,7 @@
 {
   "name": "manpm",
   "description": "Shows the relevant part of NPM module's README file right in your terminal",
-  "main": "index.js",
+  "main": "./src/index.js",
   "version": "0.0.0-semantic-release",
   "bin": {
     "manpm": "./bin/manpm.js"
@@ -12,12 +12,13 @@
     "commit": "git-issues && commit-wizard",
     "issues": "git-issues",
     "pkgfiles": "pkgfiles",
+    "exact": "exact-semver",
     "size": "tarball=\"$(npm pack .)\"; wc -c \"${tarball}\"; tar tvf \"${tarball}\"; rm \"${tarball}\";",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "files": [
     "bin",
-    "index.js"
+    "src"
   ],
   "repository": {
     "type": "git",
@@ -63,10 +64,12 @@
     }
   },
   "devDependencies": {
-    "eslint": "^1.10.1",
+    "eslint": "1.10.1",
+    "exact-semver": "1.2.0",
     "git-issues": "1.2.0",
+    "mocha": "2.3.4",
     "pkgfiles": "2.3.0",
     "pre-git": "1.3.1",
-    "semantic-release": "^4.3.5"
+    "semantic-release": "4.3.5"
   }
 }

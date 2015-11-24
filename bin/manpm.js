@@ -17,5 +17,5 @@ if (noArguments()) {
 }
 
 var name = process.argv[2];
-var maNpm = require('..');
+var maNpm = require('../src/index');
 maNpm({ name: name });
