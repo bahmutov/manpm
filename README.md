@@ -4,6 +4,7 @@
 
 [![NPM][manpm-icon] ][manpm-url]
 
+[![This module can be searched from CLI using manpm][https://github.com/bahmutov/manpm]](https://img.shields.io/badge/manpm-compatible-3399ff.svg)
 [![CI][ci-badge] ][ci-url]
 [![semantic-release][semantic-image] ][semantic-url]
 
