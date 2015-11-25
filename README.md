@@ -5,6 +5,7 @@
 [![NPM][manpm-icon] ][manpm-url]
 
 [![manpm](https://img.shields.io/badge/manpm-compatible-3399ff.svg)](https://github.com/bahmutov/manpm)
+[![alternate](https://img.shields.io/badge/manpm-%E2%9C%93-3399ff.svg)](https://github.com/bahmutov/manpm)
 [![CI][ci-badge] ][ci-url]
 [![semantic-release][semantic-image] ][semantic-url]
 [![npm checklist](https://img.shields.io/badge/%E2%98%B0-%E2%9C%93-brightgreen.svg)](https://github.com/bahmutov/npm-module-checklist#readme)
@@ -21,9 +22,11 @@
 
 If you module has API well-described in the README, and `manpm <text>` works well,
 consider adding the following `manpm compatible` badge to your README. Here is the markdown
+for both variants: words or unicode symbols
 
 ```
 [![manpm](https://img.shields.io/badge/manpm-compatible-3399ff.svg)](https://github.com/bahmutov/manpm)
+[![alternate](https://img.shields.io/badge/manpm-%E2%9C%93-3399ff.svg)](https://github.com/bahmutov/manpm)
 ```
 
 ## Install
