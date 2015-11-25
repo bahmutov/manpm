@@ -1,4 +1,6 @@
 var log = require('debug')('manpm');
+var verbose = require('debug')('verbose');
+
 var la = require('lazy-ass');
 var check = require('check-more-types');
 var marked = require('marked');
@@ -29,7 +31,9 @@ function findSectionByHeader(search, tokens) {
     }
     if (token.type === 'heading') {
       var hasSearchText = token.text.toLowerCase().indexOf(search) !== -1;
-      // console.log('checking heading', k, token.text, 'has text?', hasSearchText);
+      verbose('checking heading', k, token.text,
+        'has text?', hasSearchText,
+        'start', foundStart, 'end', foundEnd);
 
       if (check.not.defined(foundStart) && hasSearchText) {
         foundStart = k;
@@ -38,12 +42,14 @@ function findSectionByHeader(search, tokens) {
       if (check.not.defined(foundStart) && !hasSearchText) {
         return;
       }
-      foundEnd = k;
+      if (!hasSearchText) {
+        foundEnd = k;
 
-      var part = tokens.slice(foundStart, foundEnd);
-      foundTokens = foundTokens.concat(part);
-      foundStart = foundEnd = undefined;
-      return;
+        verbose('part from %d to %d', foundStart, foundEnd);
+        var part = tokens.slice(foundStart, foundEnd);
+        foundTokens = foundTokens.concat(part);
+        foundStart = foundEnd = undefined;
+      }
     }
   });
 
@@ -52,6 +58,7 @@ function findSectionByHeader(search, tokens) {
   }
   if (check.defined(foundStart) &&
     check.defined(foundEnd)) {
+    verbose('slicing part at the end %d to %d', foundStart, foundEnd);
     var part = tokens.slice(foundStart, foundEnd);
     foundTokens = foundTokens.concat(part);
   }

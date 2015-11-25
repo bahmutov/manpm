@@ -10,7 +10,7 @@ describeIt(partJs, 'findSectionByHeader(search, tokens)', function () {
     la(check.fn(this.findSectionByHeader));
   });
 
-  it('finds section by text in the header', function () {
+  it('finds single section by text in the header', function () {
     var text = [
       '# foo is awesome',
       'bar',
@@ -20,6 +20,45 @@ describeIt(partJs, 'findSectionByHeader(search, tokens)', function () {
     var tokens = marked.lexer(text);
     var section = this.findSectionByHeader('foo', tokens);
     la(check.unemptyArray(section), section);
+    la(section.length === 2, section);
+    la(section[0].text === 'foo is awesome', section[0]);
+    la(section[1].text === 'bar', section[1]);
+  });
+
+  it('finds two adjoining sections by text in the header', function () {
+    var text = [
+      '# foo is awesome',
+      'bar',
+      '# baz is worse than foo',
+      'something else'
+    ].join('\n');
+    var tokens = marked.lexer(text);
+    var section = this.findSectionByHeader('foo', tokens);
+
+    la(check.unemptyArray(section), section);
+    la(section.length === 4, section);
+    la(section[0].text === 'foo is awesome', section[0]);
+    la(section[2].text === 'baz is worse than foo', section[2]);
+  });
+
+  it('finds two separate sections by text in the header', function () {
+    var text = [
+      '# foo is awesome',
+      'bar',
+
+      '# something else in the middle',
+      'something else',
+
+      '# baz is worse than foo',
+      'something else'
+    ].join('\n');
+    var tokens = marked.lexer(text);
+    var section = this.findSectionByHeader('foo', tokens);
+
+    la(check.unemptyArray(section), section);
+    la(section.length === 4, section);
+    la(section[0].text === 'foo is awesome', section[0]);
+    la(section[2].text === 'baz is worse than foo', section[2]);
   });
 });
 
