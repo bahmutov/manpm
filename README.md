@@ -42,6 +42,14 @@ For example `manpm email-regex` will render the README from
 
 ![manpm screenshot](images/manpm-screenshot.png)
 
+## Pipe through less | more
+
+You can pipe the output of `manpm` through "less" or "more" tools - but you will
+lose the Markdown highlighting.
+
+    manpm <package name> | less
+    manpm <package name> | more
+
 ## Show part of the readme
 
     manpm <package name> [optional search text inside README]
