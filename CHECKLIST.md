@@ -1,44 +1,44 @@
-- [ ] watch the [egghead.io][egghead] series [How to Write an Open Source JavaScript Library][egghead series];
+- [x] watch the [egghead.io][egghead] series [How to Write an Open Source JavaScript Library][egghead series];
 it is extremely useful for any NPM project (OSS or closed-sourced).
 
-- [ ] start unit testing right away, [pick your unit testing framework][pick testing framework]
+- [x] start unit testing right away, [pick your unit testing framework][pick testing framework]
 
-- [ ] start linting code to prevent obvious problems, like misspelled variable. 
-[eslint][eslint], [jshint][jshint], [jscs][jscs] or all of them together 
+- [x] start linting code to prevent obvious problems, like misspelled variable.
+[eslint][eslint], [jshint][jshint], [jscs][jscs] or all of them together
 [gulp-lint-everything][gulp-lint-everything]
 
-- [ ] run linting and unit tests on each commit locally. [pre-git][pre-git], [ghooks][ghooks]
+- [x] run linting and unit tests on each commit locally. [pre-git][pre-git], [ghooks][ghooks]
 
-- [ ] validate commit message using [pre-git][pre-git] or [commitizen][commitizen] with [validate-commit-msg][validate-commit-msg]. This
+- [x] validate commit message using [pre-git][pre-git] or [commitizen][commitizen] with [validate-commit-msg][validate-commit-msg]. This
 enables other tools, like intelligent release notes.
 
-- [ ] show the project's GitHub open issues on demand or on commit using [git-issues][git-issues]
+- [x] show the project's GitHub open issues on demand or on commit using [git-issues][git-issues]
 
-- [ ] setup continuous integration server, like [TravisCI][travis] or [CircleCI][circle] (or wait until you set up [semantic-release][semantic-release] which will set up [TravisCI][travis] for you).
+- [x] setup continuous integration server, like [TravisCI][travis] or [CircleCI][circle] (or wait until you set up [semantic-release][semantic-release] which will set up [TravisCI][travis] for you).
 
-- [ ] [add badges][badges] to the README to make broken unit tests or out of date dependencies visible
+- [x] [add badges][badges] to the README to make broken unit tests or out of date dependencies visible
   * ci server badge
   * published NPM package info
   * production and dev dependencies being out of date
   * semantic release badge
 
-- [ ] check module published size and white list only necessary files, [tutorial][module size]
+- [x] check module published size and white list only necessary files, [tutorial][module size]
 
-- [ ] setup [semantic-release][semantic-release] to automate publishing
+- [x] setup [semantic-release][semantic-release] to automate publishing
 and avoid breaking [semver][semver]. This is [important][semver important],
 but is currently [broken][broken semver] in too many projects. Even this checklist is using semver!
 
-- [ ] avoid surprizes by using exact versions of the top level dependencies. 
+- [x] avoid surprizes by using exact versions of the top level dependencies.
 Use [save-exact][save-exact] NPM setting and [exact-semver][exact-semver] to enforce it.
 
 - [ ] setup a script to reliably update out of date dependencies using [next-update][next-update install]
 
-- [ ] catch missing or invalid `package.json` values using [grunt-nice-package][grunt-nice-package] 
+- [ ] catch missing or invalid `package.json` values using [grunt-nice-package][grunt-nice-package]
 or [fixpack][fixpack]
 
-- [ ] write simple installation commands for your module
+- [x] write simple installation commands for your module
 
-- [ ] write "quick intro" example showing the main feature of your module
+- [x] write "quick intro" example showing the main feature of your module
 
 - [ ] add CONTRIBUTING.md file with clear guidelines how others can add new features or fix bugs
 in your module. [Atom editor][atom] and [lodash][lodash] have excellent examples to follow.
