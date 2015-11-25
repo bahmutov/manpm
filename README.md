@@ -7,6 +7,8 @@
 [![manpm](https://img.shields.io/badge/manpm-compatible-3399ff.svg)](https://github.com/bahmutov/manpm)
 [![CI][ci-badge] ][ci-url]
 [![semantic-release][semantic-image] ][semantic-url]
+[![npm checklist](https://img.shields.io/badge/%E2%98%B0-%E2%9C%93-brightgreen.svg)](https://github.com/bahmutov/npm-module-checklist#readme)
+[CHECKLIST.md](CHECKLIST.md)
 
 [manpm-icon]: https://nodei.co/npm/manpm.png?downloads=true
 [manpm-url]: https://npmjs.org/package/manpm
