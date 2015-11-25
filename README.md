@@ -14,16 +14,31 @@
 [semantic-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-url]: https://github.com/semantic-release/semantic-release
 
-## Install and use
+## Badge
+
+If you module has API well-described in the README, and `manpm <text>` works well,
+consider adding the following `manpm compatible` badge to your README. Here is the markdown
+
+```
+[![This module can be searched from CLI using manpm][https://github.com/bahmutov/manpm]](https://img.shields.io/badge/manpm-compatible-3399ff.svg)
+```
+
+## Install
 
     npm install -g manpm
+
+## Show entire readme
+
     manpm <package name>
-    manpm <package name> [optional search text inside README]
 
 For example `manpm email-regex` will render the README from
 [email-regex](https://www.npmjs.com/package/email-regex) package in you terminal
 
 ![manpm screenshot](images/manpm-screenshot.png)
+
+## Show part of the readme
+
+    manpm <package name> [optional search text inside README]
 
 If search text is provided, only a section of the README file with that text
 (if found) will be displayed.
