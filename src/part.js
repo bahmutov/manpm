@@ -11,6 +11,7 @@ function markdownTokens(md) {
   return tokens;
 }
 
+// returns found tokens
 function findSectionByHeader(search, tokens) {
   la(check.unemptyString(search), 'missing search', search);
   la(check.array(tokens), 'missing tokens', tokens);
@@ -19,7 +20,10 @@ function findSectionByHeader(search, tokens) {
 
   var foundStart, foundEnd;
 
-  tokens.some(function (token, k) {
+  var links = tokens.links;
+  var foundTokens = [];
+
+  tokens.forEach(function (token, k) {
     if (token.type !== 'heading' && !foundStart) {
       return;
     }
@@ -35,20 +39,27 @@ function findSectionByHeader(search, tokens) {
         return;
       }
       foundEnd = k;
-      return true;
+
+      var part = tokens.slice(foundStart, foundEnd);
+      foundTokens = foundTokens.concat(part);
+      foundStart = foundEnd = undefined;
+      return;
     }
   });
-  if (check.not.defined(foundStart)) {
-    return [];
-  }
-  if (check.not.defined(foundEnd)) {
+
+  if (check.defined(foundStart) && check.not.defined(foundEnd)) {
     foundEnd = tokens.length;
   }
-  // console.log('slicing from %d found end', foundStart, foundEnd);
-  var links = tokens.links;
-  var result = tokens.slice(foundStart, foundEnd);
-  result.links = links;
-  return result;
+  if (check.defined(foundStart) &&
+    check.defined(foundEnd)) {
+    var part = tokens.slice(foundStart, foundEnd);
+    foundTokens = foundTokens.concat(part);
+  }
+
+  if (check.not.empty(foundTokens)) {
+    foundTokens.links = links;
+  }
+  return foundTokens;
 }
 
 function findSection(options, md) {
