@@ -4,7 +4,7 @@
 
 [![NPM][manpm-icon] ][manpm-url]
 
-[![This module can be searched from CLI using manpm][https://github.com/bahmutov/manpm]](https://img.shields.io/badge/manpm-compatible-3399ff.svg)
+[![manpm](https://img.shields.io/badge/manpm-compatible-3399ff.svg)](https://github.com/bahmutov/manpm)
 [![CI][ci-badge] ][ci-url]
 [![semantic-release][semantic-image] ][semantic-url]
 
@@ -21,7 +21,7 @@ If you module has API well-described in the README, and `manpm <text>` works wel
 consider adding the following `manpm compatible` badge to your README. Here is the markdown
 
 ```
-[![This module can be searched from CLI using manpm][https://github.com/bahmutov/manpm]](https://img.shields.io/badge/manpm-compatible-3399ff.svg)
+[![manpm](https://img.shields.io/badge/manpm-compatible-3399ff.svg)](https://github.com/bahmutov/manpm)
 ```
 
 ## Install
