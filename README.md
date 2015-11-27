@@ -79,6 +79,22 @@ I added an alias to `manpm bevacqua/es6` command to my shell alias file for conv
     es6-docs weaksets
     es6-docs array
 
+## Example: showing ES6 features
+
+Another great succint overview of ES6 features is
+in [lukehoban/es6features](https://github.com/lukehoban/es6features). Let us add an alias
+
+    echo 'alias es6-features="manpm lukehoban/es6features"' >> ~/.alias
+    source ~/.alias
+
+Let us look up the binary notation in ES6
+
+    es6-features binary
+    ### Binary and Octal Literals
+    Two new numeric literal forms are added for binary (b) and octal (o).
+        0b111110111 === 503 // true
+        0o767 === 503 // true
+
 ## Pipe through less | more
 
 You can pipe the output of `manpm` through "less" or "more" tools - but you will
