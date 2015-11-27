@@ -15,7 +15,10 @@
     "exact": "exact-semver",
     "size": "tarball=\"$(npm pack .)\"; wc -c \"${tarball}\"; tar tvf \"${tarball}\"; rm \"${tarball}\";",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "next-update": "next-update -k true"
+    "next-update": "next-update -k true",
+    "example-npm": "node ./bin/manpm.js chalk background",
+    "example-github": "node ./bin/manpm.js https://github.com/bahmutov/object-fitter",
+    "example-es6-docs": "node ./bin/manpm.js bevacqua/es6 literals"
   },
   "files": [
     "bin",
@@ -49,7 +52,9 @@
     "lazy-ass": "1.1.0",
     "marked": "0.3.5",
     "marked-terminal": "https://github.com/mikaelbr/marked-terminal.git#35f6ddac9d9f32b11e85ceb6bc5f42642f06e456",
-    "marked-to-md": "1.0.1"
+    "marked-to-md": "1.0.1",
+    "parse-github-repo-url": "git+https://github.com/bahmutov/parse-github-repo-url.git#38adb1190c3015c4c98e8feea5d5120e2fb5f00a",
+    "simple-get": "1.4.3"
   },
   "preferGlobal": true,
   "config": {
@@ -57,7 +62,9 @@
       "commit-msg": "validate-commit-msg",
       "pre-commit": [
         "npm run lint",
-        "npm test"
+        "npm test",
+        "npm run example-npm",
+        "npm run example-github"
       ],
       "pre-push": [
         "npm run size",
@@ -68,7 +75,7 @@
     }
   },
   "devDependencies": {
-    "describe-it": "1.6.0",
+    "describe-it": "1.7.0",
     "eslint": "1.10.1",
     "exact-semver": "1.2.0",
     "git-issues": "1.2.0",
@@ -76,7 +83,7 @@
     "next-update": "0.9.5",
     "pkgfiles": "2.3.0",
     "pre-git": "1.3.1",
-    "quote": "^0.4.0",
+    "quote": "0.4.0",
     "semantic-release": "4.3.5"
   }
 }

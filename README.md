@@ -33,9 +33,12 @@ for both variants: words or unicode symbols
 
     npm install -g manpm
 
-## Show entire readme
+## Show entire package or github readme
 
-    manpm <package name>
+You can give NPM package name (like `manpm`), GitHub user / repo pair (like `bahmutov/manpm`) or
+full GitHub url (like `https://github.com/bahmutov/object-fitter` or `git@github.com:bahmutov/object-fitter.git`).
+
+    manpm <package name | github repo>
 
 For example `manpm email-regex` will render the README from
 [email-regex](https://www.npmjs.com/package/email-regex) package in you terminal
@@ -58,6 +61,14 @@ If search text is provided, only a section of the README file with that text
 (if found) will be displayed.
 
 ![manpm search section](images/search-section.png)
+
+## Advanced
+
+If there are problems and `manpm` is not working as expected, you can see the debug output.
+Just run the tool with `DEBUG=manpm manpm ...` environment setting.
+
+    $ DEBUG=manpm manpm object-fitter
+    manpm fetching README for package +0ms object-fitter
 
 ## Inspired by the following tools
 

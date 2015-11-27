@@ -8,7 +8,7 @@ function showHelp() {
   var join = require('path').join;
   var pkg = require(join(__dirname, '..', 'package.json'));
   console.log('%s@%s - %s', pkg.name, pkg.version, pkg.description);
-  console.log('use: %s <package name> [optional search text]', pkg.name);
+  console.log('use: %s <package name|github repo> [optional search text]', pkg.name);
 }
 
 if (noArguments()) {
