@@ -65,7 +65,8 @@
         "npm run lint",
         "npm test",
         "npm run example-npm",
-        "npm run example-github"
+        "npm run example-github",
+        "npm run example-es6-docs"
       ],
       "pre-push": [
         "npm run size",
