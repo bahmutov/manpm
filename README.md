@@ -45,14 +45,6 @@ For example `manpm email-regex` will render the README from
 
 ![manpm screenshot](images/manpm-screenshot.png)
 
-## Pipe through less | more
-
-You can pipe the output of `manpm` through "less" or "more" tools - but you will
-lose the Markdown highlighting.
-
-    manpm <package name> | less
-    manpm <package name> | more
-
 ## Show part of the readme
 
     manpm <package name> [optional search text inside README]
@@ -61,6 +53,39 @@ If search text is provided, only a section of the README file with that text
 (if found) will be displayed.
 
 ![manpm search section](images/search-section.png)
+
+## Example: showing ES6 docs
+
+There is a great GitHub repo [ES6 Overview in 350 Bullet Points](https://github.com/bevacqua/es6)
+hosted at `https://github.com/bevacqua/es6`. Let us see how we can info for `WeakSets`
+
+```
+$ manpm bevacqua/es6 weaksets
+# WeakSets
+
+    * WeakSet is sort of a cross-breed between Set and WeakMap
+    * A WeakSet is a set that can't be iterated and doesn't have enumeration methods
+    * WeakSet values must be reference types
+    * WeakSet may be useful for a metadata table indicating whether a reference is actively in use or not
+    * Read ES6 WeakSets in Depth (https://ponyfoo.com/articles/es6-weakmaps-sets-and-weaksets-in-depth#es6-weaksets)
+
+<sup>(back to table of contents) (#table-of-contents)</sup>
+```
+
+I added an alias to `manpm bevacqua/es6` command to my shell alias file for convenience
+
+    $ echo 'alias es6-docs="manpm bevacqua/es6"' >> ~/.alias
+    source ~/.alias
+    es6-docs weaksets
+    es6-docs array
+
+## Pipe through less | more
+
+You can pipe the output of `manpm` through "less" or "more" tools - but you will
+lose the Markdown highlighting.
+
+    manpm <package name> | less
+    manpm <package name> | more
 
 ## Advanced
 

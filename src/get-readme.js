@@ -3,8 +3,23 @@ var la = require('lazy-ass');
 var check = require('check-more-types');
 var Promise = require('bluebird');
 var getReadmeFile = Promise.promisify(require('get-package-readme'));
-var get = Promise.promisify(require('simple-get').concat);
+var simpleGet = require('simple-get');
 var parseGithubRepoUrl = require('parse-github-repo-url');
+
+function get(url) {
+  return new Promise(function (resolve, reject) {
+    simpleGet.concat(url, function (err, data, res) {
+      if (err) {
+        log('simple get error from url', url, err);
+        return reject(err);
+      }
+      if (res.statusCode !== 200) {
+        return reject(new Error('GET from ' + url + ' status ' + res.statusCode));
+      }
+      return resolve(data);
+    });
+  });
+}
 
 // TODO move to kensho/check-more-types
 function maybeGithubRepoName(name) {
@@ -35,18 +50,31 @@ function toString(x) {
   return x.toString();
 }
 
+function formGithubUrl(info, filename) {
+  la(isValidGithubInfo(info), 'missing github info', info);
+  la(check.unemptyString(filename), 'missing filename', filename);
+  var fullUrl = 'https://raw.githubusercontent.com/' + info.user +
+    '/' + info.repo +
+    '/master/' + filename;
+  return fullUrl;
+}
+
 function getReadmeFromGithub(name) {
   la(check.unemptyString(name), 'missing github info', name);
   var parsed = parseGithub(name);
   la(isValidGithubInfo(parsed), parsed, 'from', name);
 
-  // TODO handle readme file variants
-  // README.markdown
-  // readme.markdown
-  var fullUrl = 'https://raw.githubusercontent.com/' + parsed.user +
-    '/' + parsed.repo + '/master/README.md';
+  var fullUrl = formGithubUrl(parsed, 'README.md');
+  la(check.unemptyString(fullUrl), 'missing url', fullUrl, 'from', parsed);
   log('fetching url from', fullUrl);
+
   return get(fullUrl)
+    .catch(function () {
+      // probably not found
+      fullUrl = formGithubUrl(parsed, 'readme.markdown');
+      log('fetching url from', fullUrl);
+      return get(fullUrl);
+    })
     .then(toString);
 }
 
