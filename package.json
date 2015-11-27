@@ -51,6 +51,7 @@
     "marked-terminal": "https://github.com/mikaelbr/marked-terminal.git#35f6ddac9d9f32b11e85ceb6bc5f42642f06e456",
     "marked-to-md": "1.0.1"
   },
+  "preferGlobal": true,
   "config": {
     "pre-git": {
       "commit-msg": "validate-commit-msg",
