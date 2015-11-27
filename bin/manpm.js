@@ -16,6 +16,10 @@ if (noArguments()) {
   process.exit(0);
 }
 
+require('update-notifier')({
+  pkg: require('../package.json')
+}).notify();
+
 var name = process.argv[2];
 var search = process.argv[3];
 var maNpm = require('../src/index');

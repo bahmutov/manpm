@@ -54,7 +54,8 @@
     "marked-terminal": "https://github.com/mikaelbr/marked-terminal.git#35f6ddac9d9f32b11e85ceb6bc5f42642f06e456",
     "marked-to-md": "1.0.1",
     "parse-github-repo-url": "git+https://github.com/bahmutov/parse-github-repo-url.git#38adb1190c3015c4c98e8feea5d5120e2fb5f00a",
-    "simple-get": "1.4.3"
+    "simple-get": "1.4.3",
+    "update-notifier": "0.5.0"
   },
   "preferGlobal": true,
   "config": {
