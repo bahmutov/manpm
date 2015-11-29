@@ -54,6 +54,13 @@ If search text is provided, only a section of the README file with that text
 
 ![manpm search section](images/search-section.png)
 
+The following search features are implemented
+
+- [x] find exact match in the section heading text
+- [ ] fuzzy text match in the section heading text
+- [ ] find exact match in the section body
+- [ ] fuzzy text match in the section body
+
 ## Example: showing ES6 docs
 
 There is a great GitHub repo [ES6 Overview in 350 Bullet Points](https://github.com/bevacqua/es6)
