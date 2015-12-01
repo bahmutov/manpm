@@ -19,7 +19,8 @@
     "example-npm": "node ./bin/manpm.js chalk background",
     "test-search-in-text": "node ./bin/manpm.js chalk cmder",
     "example-github": "node ./bin/manpm.js https://github.com/bahmutov/object-fitter",
-    "example-es6-docs": "node ./bin/manpm.js bevacqua/es6 literals"
+    "example-es6-docs": "node ./bin/manpm.js bevacqua/es6 literals",
+    "test-hr": "DEBUG=manpm node ./bin/manpm.js hr"
   },
   "files": [
     "bin",

@@ -8,6 +8,7 @@ var parseGithubRepoUrl = require('parse-github-repo-url');
 
 function get(url) {
   return new Promise(function (resolve, reject) {
+    log('getting from url', url);
     simpleGet.concat(url, function (err, data, res) {
       if (err) {
         log('simple get error from url', url, err);
@@ -32,6 +33,7 @@ function maybeGithubRepoUrl(name) {
 }
 
 function parseGithub(url) {
+  log('parsing github url', url);
   var parsed = parseGithubRepoUrl(url);
   la(check.array(parsed), 'could not parse github url', url);
   return {
@@ -61,6 +63,7 @@ function formGithubUrl(info, filename) {
 
 function getReadmeFromGithub(name) {
   la(check.unemptyString(name), 'missing github info', name);
+  log('getting readme directly from github for', name);
   var parsed = parseGithub(name);
   la(isValidGithubInfo(parsed), parsed, 'from', name);
 
