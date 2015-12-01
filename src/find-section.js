@@ -137,6 +137,8 @@ function findSection(options, md) {
     return fromTokens(foundSectionByText).trim();
   }
 
+  console.log('Cannot find the search string "%s", showing entire document',
+    searchString);
   return md;
 }
 
