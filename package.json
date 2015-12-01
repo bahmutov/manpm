@@ -50,6 +50,7 @@
     "debug": "2.2.0",
     "get-package-readme": "1.1.0",
     "lazy-ass": "1.1.0",
+    "lunr": "0.6.0",
     "marked": "0.3.5",
     "marked-terminal": "https://github.com/mikaelbr/marked-terminal.git#35f6ddac9d9f32b11e85ceb6bc5f42642f06e456",
     "marked-to-md": "1.0.1",

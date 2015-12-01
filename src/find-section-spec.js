@@ -1,6 +1,6 @@
 var la = require('lazy-ass');
 var check = require('check-more-types');
-var partJs = require('path').join(__dirname, 'part.js');
+var partJs = require('path').join(__dirname, 'find-section.js');
 var describeIt = require('describe-it');
 var marked = require('marked');
 var quote = require('quote');
@@ -93,7 +93,7 @@ describeIt(partJs, 'markdownTokens(md)', function () {
 
 /* global describe, it */
 describe('find section', function () {
-  var find = require('./part');
+  var find = require('./find-section');
 
   it('is a function', function () {
     la(check.fn(find));

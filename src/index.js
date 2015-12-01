@@ -2,7 +2,8 @@ var log = require('debug')('manpm');
 var la = require('lazy-ass');
 var check = require('check-more-types');
 var getReadme = require('./get-readme');
-var findSection = require('./part');
+var findSection = require('./find-section');
+la(check.fn(findSection), 'missing find section');
 
 var marked = require('marked');
 var TerminalMarkdown = require('marked-terminal');
