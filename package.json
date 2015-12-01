@@ -20,7 +20,8 @@
     "test-search-in-text": "node ./bin/manpm.js chalk cmder",
     "example-github": "node ./bin/manpm.js https://github.com/bahmutov/object-fitter",
     "example-es6-docs": "node ./bin/manpm.js bevacqua/es6 literals",
-    "test-hr": "DEBUG=manpm node ./bin/manpm.js hr"
+    "test-hr": "DEBUG=manpm node ./bin/manpm.js hr",
+    "ban": "ban"
   },
   "files": [
     "bin",
@@ -66,6 +67,7 @@
     "pre-git": {
       "commit-msg": "validate-commit-msg",
       "pre-commit": [
+        "npm run ban",
         "npm run lint",
         "npm test",
         "npm run example-npm",
@@ -83,6 +85,7 @@
     }
   },
   "devDependencies": {
+    "ban-sensitive-files": "1.4.0",
     "eslint": "1.10.1",
     "exact-semver": "1.2.0",
     "git-issues": "1.2.0",
