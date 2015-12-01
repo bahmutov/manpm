@@ -6,20 +6,26 @@ var utils = require('./utils');
 
 // working around github-url-to-object used inside get-package-readme
 // that cannot handle www.github.com urls
+// this does NOT work on npm2 where it cannot find github-url-to-object
+// due to multi level folder
 /* eslint no-undef:0 */
-require = require('really-need');
-require('github-url-to-object', {
-  post: function () {
-    return function gh(url) {
-      log('parsing github url %s ourselves', url);
-      var parsed = parseGithubRepoUrl(url);
-      return {
-        user: parsed[0],
-        repo: parsed[1]
+try {
+  require = require('really-need');
+  require('github-url-to-object', {
+    post: function () {
+      return function gh(url) {
+        log('parsing github url %s ourselves', url);
+        var parsed = parseGithubRepoUrl(url);
+        return {
+          user: parsed[0],
+          repo: parsed[1]
+        };
       };
-    };
-  }
-});
+    }
+  });
+} catch (err) {
+  // ignore
+}
 
 var Promise = require('bluebird');
 var getReadmeFile = Promise.promisify(require('get-package-readme'));
