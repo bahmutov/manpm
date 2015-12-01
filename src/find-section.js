@@ -7,10 +7,24 @@ var marked = require('marked');
 var mdRenderer = require('marked-to-md');
 var renderer = mdRenderer(new marked.Renderer());
 var parser = new marked.Parser({ renderer: renderer });
+var toSections = require('./to-sections');
+var _ = require('lodash');
 
-function markdownTokens(md) {
-  var tokens = marked.lexer(md);
-  return tokens;
+var toTokens = marked.lexer.bind(marked);
+
+function fromTokens(tokens) {
+  // parser.parse removes all items from tokens!
+  var copy = _.clone(tokens, true);
+  copy.links = _.clone(tokens.links, true);
+  return parser.parse(copy);
+}
+
+// assumes search is lowercase text already
+function hasText(text, search) {
+  la(check.string(text), 'missing text', text);
+  la(check.unemptyString(search), 'missing search', search);
+  var has = text.toLowerCase().indexOf(search) !== -1;
+  return has;
 }
 
 // returns found tokens
@@ -69,6 +83,33 @@ function findSectionByHeader(search, tokens) {
   return foundTokens;
 }
 
+// returns found tokens
+function findSectionByText(search, tokens) {
+  la(check.unemptyString(search), 'missing search', search);
+  la(check.array(tokens), 'missing tokens', tokens);
+
+  search = search.toLowerCase();
+
+  var sections = toSections(tokens);
+  la(check.array(sections),
+    'could not find sections from tokens', tokens);
+
+  var sectionsText = sections.map(fromTokens);
+
+  var foundIndex = -1;
+  sectionsText.some(function (sectionText, k) {
+    if (hasText(sectionText, search)) {
+      foundIndex = k;
+      return true;
+    }
+  });
+
+  if (foundIndex !== -1) {
+    return sections[foundIndex];
+  }
+}
+
+// if not found, returns entire text
 function findSection(options, md) {
   la(check.maybe.object(options), 'missing options', options);
   la(check.unemptyString(md), 'missing markdown', md);
@@ -83,10 +124,17 @@ function findSection(options, md) {
     return md;
   }
 
-  var tokens = markdownTokens(md);
+  var tokens = toTokens(md);
+  la(check.array(tokens), 'could not parse markdown', md);
+
   var foundSectionByHeader = findSectionByHeader(searchString, tokens);
   if (check.unemptyArray(foundSectionByHeader)) {
-    return parser.parse(foundSectionByHeader).trim();
+    return fromTokens(foundSectionByHeader).trim();
+  }
+
+  var foundSectionByText = findSectionByText(searchString, tokens);
+  if (check.unemptyArray(foundSectionByText)) {
+    return fromTokens(foundSectionByText).trim();
   }
 
   return md;

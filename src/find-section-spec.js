@@ -5,6 +5,8 @@ var describeIt = require('describe-it');
 var marked = require('marked');
 var quote = require('quote');
 
+/* global describe, it */
+
 describeIt(partJs, 'findSectionByHeader(search, tokens)', function () {
   it('is a function', function () {
     la(check.fn(this.findSectionByHeader));
@@ -62,18 +64,14 @@ describeIt(partJs, 'findSectionByHeader(search, tokens)', function () {
   });
 });
 
-describeIt(partJs, 'markdownTokens(md)', function () {
+describeIt(partJs, 'var toTokens', function () {
   it('is a function', function () {
-    la(check.fn(this.markdownTokens));
-  });
-
-  it('expects single argument', function () {
-    la(this.markdownTokens.length === 1);
+    la(check.fn(this.toTokens));
   });
 
   it('parses 2 paragraphs', function () {
     var text = ['# p1', 'foo', '# p2', 'bar'].join('\n');
-    var tokens = this.markdownTokens(text);
+    var tokens = this.toTokens(text);
     la(check.array(tokens));
     la(tokens.length === 4);
 
@@ -91,7 +89,6 @@ describeIt(partJs, 'markdownTokens(md)', function () {
   });
 });
 
-/* global describe, it */
 describe('find section', function () {
   var find = require('./find-section');
 
@@ -130,5 +127,19 @@ describe('find section', function () {
     la(check.unemptyString(found));
     var firstSection = text.slice(0, 2).join('\n');
     la(found === firstSection, 'found\n' + quote(found), '\ninstead of\n' + quote(firstSection));
+  });
+
+  it('finds word inside the section', function () {
+    var text = [
+      '# 1 is foo',
+      'foo is awesome',
+      '# 2 is bar',
+      'bar is not as good'
+    ];
+    var search = { text: 'awesome' };
+    var expected = text.slice(0, 2).join('\n');
+    var found = find(search, text.join('\n'));
+    la(check.unemptyString(found), 'could not find', search);
+    la(found === expected, 'found first section\n' + found);
   });
 });
