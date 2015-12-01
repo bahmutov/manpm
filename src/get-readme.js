@@ -1,10 +1,29 @@
 var log = require('debug')('manpm');
 var la = require('lazy-ass');
 var check = require('check-more-types');
+var parseGithubRepoUrl = require('parse-github-repo-url');
+var utils = require('./utils');
+
+// working around github-url-to-object used inside get-package-readme
+// that cannot handle www.github.com urls
+/* eslint no-undef:0 */
+require = require('really-need');
+require('github-url-to-object', {
+  post: function () {
+    return function gh(url) {
+      log('parsing github url %s ourselves', url);
+      var parsed = parseGithubRepoUrl(url);
+      return {
+        user: parsed[0],
+        repo: parsed[1]
+      };
+    };
+  }
+});
+
 var Promise = require('bluebird');
 var getReadmeFile = Promise.promisify(require('get-package-readme'));
 var simpleGet = require('simple-get');
-var parseGithubRepoUrl = require('parse-github-repo-url');
 
 function get(url) {
   return new Promise(function (resolve, reject) {
@@ -20,26 +39,6 @@ function get(url) {
       return resolve(data);
     });
   });
-}
-
-// TODO move to kensho/check-more-types
-function maybeGithubRepoName(name) {
-  var regular = /^[a-zA-Z0-9]+\/[a-zA-Z0-9\-\.]+$/;
-  return regular.test(name);
-}
-
-function maybeGithubRepoUrl(name) {
-  return Array.isArray(parseGithubRepoUrl(name));
-}
-
-function parseGithub(url) {
-  log('parsing github url', url);
-  var parsed = parseGithubRepoUrl(url);
-  la(check.array(parsed), 'could not parse github url', url);
-  return {
-    user: parsed[0],
-    repo: parsed[1]
-  };
 }
 
 var githubSchema = {
@@ -64,7 +63,7 @@ function formGithubUrl(info, filename) {
 function getReadmeFromGithub(name) {
   la(check.unemptyString(name), 'missing github info', name);
   log('getting readme directly from github for', name);
-  var parsed = parseGithub(name);
+  var parsed = utils.parseGithub(name);
   la(isValidGithubInfo(parsed), parsed, 'from', name);
 
   var fullUrl = formGithubUrl(parsed, 'README.md');
@@ -84,10 +83,10 @@ function getReadmeFromGithub(name) {
 function getReadme(name) {
   la(check.unemptyString(name), 'missing name');
 
-  if (maybeGithubRepoName(name)) {
+  if (utils.maybeGithubRepoName(name)) {
     log('fetching README for github repo', name);
     return getReadmeFromGithub(name);
-  } else if (maybeGithubRepoUrl(name)) {
+  } else if (utils.maybeGithubRepoUrl(name)) {
     log('fetching README for github url', name);
     return getReadmeFromGithub(name);
   } else {

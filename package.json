@@ -56,7 +56,8 @@
     "marked": "0.3.5",
     "marked-terminal": "https://github.com/mikaelbr/marked-terminal.git#35f6ddac9d9f32b11e85ceb6bc5f42642f06e456",
     "marked-to-md": "1.0.1",
-    "parse-github-repo-url": "git+https://github.com/bahmutov/parse-github-repo-url.git#38adb1190c3015c4c98e8feea5d5120e2fb5f00a",
+    "parse-github-repo-url": "https://github.com/bahmutov/parse-github-repo-url.git#52c8b013e1ab3fa4ad8e305e8afeb9109313dc31",
+    "really-need": "1.7.2",
     "simple-get": "1.4.3",
     "update-notifier": "0.5.0"
   },
@@ -70,7 +71,8 @@
         "npm run example-npm",
         "npm run example-github",
         "npm run example-es6-docs",
-        "npm run test-search-in-text"
+        "npm run test-search-in-text",
+        "npm run test-hr"
       ],
       "pre-push": [
         "npm run size",
@@ -81,7 +83,6 @@
     }
   },
   "devDependencies": {
-    "describe-it": "1.7.0",
     "eslint": "1.10.1",
     "exact-semver": "1.2.0",
     "git-issues": "1.2.0",

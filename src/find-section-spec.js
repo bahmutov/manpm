@@ -1,12 +1,14 @@
 var la = require('lazy-ass');
 var check = require('check-more-types');
-var partJs = require('path').join(__dirname, 'find-section.js');
-var describeIt = require('describe-it');
-var marked = require('marked');
 var quote = require('quote');
 
 /* global describe, it */
 
+// had to remove describe-it - it was conflicting with really-need
+/*
+var partJs = require('path').join(__dirname, 'find-section.js');
+var marked = require('marked');
+var describeIt = require('describe-it');
 describeIt(partJs, 'findSectionByHeader(search, tokens)', function () {
   it('is a function', function () {
     la(check.fn(this.findSectionByHeader));
@@ -88,6 +90,7 @@ describeIt(partJs, 'var toTokens', function () {
     la(tokens[3].text === 'bar', tokens);
   });
 });
+*/
 
 describe('find section', function () {
   var find = require('./find-section');
