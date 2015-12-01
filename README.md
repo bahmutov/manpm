@@ -58,8 +58,11 @@ The following search features are implemented
 
 - [x] find exact match in the section heading text
 - [ ] fuzzy text match in the section heading text
-- [ ] find exact match in the section body
+- [x] find exact match in the section body
 - [ ] fuzzy text match in the section body
+
+I am still looking for a library capable of fuzzy text search.
+Maybe [lunr](https://github.com/olivernn/lunr.js)?
 
 ## Example: showing ES6 docs
 
