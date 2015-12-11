@@ -16,11 +16,11 @@
     "size": "tarball=\"$(npm pack .)\"; wc -c \"${tarball}\"; tar tvf \"${tarball}\"; rm \"${tarball}\";",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "next-update": "next-update -k true",
-    "example-npm": "node ./bin/manpm.js chalk background",
-    "test-search-in-text": "node ./bin/manpm.js chalk cmder",
-    "example-github": "node ./bin/manpm.js https://github.com/bahmutov/object-fitter",
-    "example-es6-docs": "node ./bin/manpm.js bevacqua/es6 literals",
-    "test-hr": "DEBUG=manpm node ./bin/manpm.js hr",
+    "example-npm": "node --harmony bin/manpm.js chalk background",
+    "test-search-in-text": "node --harmony bin/manpm.js chalk cmder",
+    "example-github": "node --harmony bin/manpm.js https://github.com/bahmutov/object-fitter",
+    "example-es6-docs": "node --harmony bin/manpm.js bevacqua/es6 literals",
+    "test-hr": "DEBUG=manpm node --harmony bin/manpm.js hr",
     "ban": "ban"
   },
   "files": [
@@ -59,6 +59,7 @@
     "marked-to-md": "1.0.1",
     "parse-github-repo-url": "https://github.com/bahmutov/parse-github-repo-url.git#52c8b013e1ab3fa4ad8e305e8afeb9109313dc31",
     "really-need": "1.7.2",
+    "simple-bin-help": "1.5.0",
     "simple-get": "1.4.3",
     "update-notifier": "0.5.0"
   },

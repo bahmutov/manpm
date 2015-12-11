@@ -1,24 +1,10 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --harmony
 
-function noArguments() {
-  return process.argv.length < 3;
-}
-
-function showHelp() {
-  var join = require('path').join;
-  var pkg = require(join(__dirname, '..', 'package.json'));
-  console.log('%s@%s - %s', pkg.name, pkg.version, pkg.description);
-  console.log('use: %s <package name|github repo> [optional search text]', pkg.name);
-}
-
-if (noArguments()) {
-  showHelp();
-  process.exit(0);
-}
-
-require('update-notifier')({
-  pkg: require('../package.json')
-}).notify();
+require('simple-bin-help')({
+  minArguments: 3,
+  packagePath: __dirname + '/../package.json',
+  help: 'USE: manpm <NPM package name | github user/repo name> [optional search text]'
+});
 
 var name = process.argv[2];
 var search = process.argv[3];
