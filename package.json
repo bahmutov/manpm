@@ -25,7 +25,8 @@
   },
   "files": [
     "bin",
-    "src",
+    "src/*.js",
+    "!src/*-spec.js",
     "CHECKLIST.md"
   ],
   "repository": {
