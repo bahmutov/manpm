@@ -86,19 +86,37 @@ function getReadmeFromGithub(name) {
     .then(toString);
 }
 
+function getLocalReadmeFile() {
+  var fs = require('fs');
+  var join = require('path').join;
+  var filename = join(process.cwd(), 'README.md');
+  return new Promise(function (resolve, reject) {
+    if (!fs.existsSync(filename)) {
+      return reject(new Error('Cannot find local file ' + filename));
+    }
+    return resolve(fs.readFileSync(filename, 'utf8'));
+  });
+}
+
 function getReadme(name) {
   la(check.unemptyString(name), 'missing name');
+
+  if (name === '.') {
+    log('fetching README in the current working folder');
+    return getLocalReadmeFile();
+  }
 
   if (utils.maybeGithubRepoName(name)) {
     log('fetching README for github repo', name);
     return getReadmeFromGithub(name);
-  } else if (utils.maybeGithubRepoUrl(name)) {
+  }
+  if (utils.maybeGithubRepoUrl(name)) {
     log('fetching README for github url', name);
     return getReadmeFromGithub(name);
-  } else {
-    log('fetching README for package', name);
-    return getReadmeFile(name);
   }
+
+  log('fetching README for package', name);
+  return getReadmeFile(name);
 }
 
 module.exports = getReadme;

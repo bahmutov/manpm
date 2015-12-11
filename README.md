@@ -33,7 +33,7 @@ for both variants: words or unicode symbols
 
     npm install -g manpm
 
-## Show entire package or github readme
+## Show the entire README from a package or github repo
 
 You can give NPM package name (like `manpm`), GitHub user / repo pair (like `bahmutov/manpm`) or
 full GitHub url (like `https://github.com/bahmutov/object-fitter` or `git@github.com:bahmutov/object-fitter.git`).
@@ -63,6 +63,12 @@ The following search features are implemented
 
 I am still looking for a library capable of fuzzy text search.
 Maybe [lunr](https://github.com/olivernn/lunr.js)?
+
+## Show and search local README
+
+Sometimes you just want to find a section in the local README file, right in the current directory.
+
+    manpm . [optional search text]
 
 ## Example: showing ES6 docs
 
