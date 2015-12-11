@@ -13,7 +13,7 @@
     "issues": "git-issues",
     "pkgfiles": "pkgfiles",
     "exact": "exact-semver",
-    "size": "tarball=\"$(npm pack .)\"; wc -c \"${tarball}\"; tar tvf \"${tarball}\"; rm \"${tarball}\";",
+    "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "next-update": "next-update -k true",
     "example-npm": "node --harmony bin/manpm.js chalk background",
@@ -79,8 +79,7 @@
         "npm run test-hr"
       ],
       "pre-push": [
-        "npm run size",
-        "npm run pkgfiles"
+        "npm run size"
       ],
       "post-commit": [],
       "post-merge": []
@@ -93,7 +92,6 @@
     "git-issues": "1.2.0",
     "mocha": "2.3.4",
     "next-update": "0.9.5",
-    "pkgfiles": "2.3.0",
     "pre-git": "1.3.1",
     "quote": "0.4.0",
     "semantic-release": "4.3.5"
