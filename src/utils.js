@@ -1,7 +1,7 @@
 var log = require('debug')('manpm');
 var la = require('lazy-ass');
 var check = require('check-more-types');
-var parseGithubRepoUrl = require('parse-github-repo-url');
+var parseGithubRepoUrl = require('@bahmutov/parse-github-repo-url');
 
 // TODO move to kensho/check-more-types
 function maybeGithubRepoName(name) {
