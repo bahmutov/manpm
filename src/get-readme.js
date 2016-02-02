@@ -1,34 +1,10 @@
 var log = require('debug')('manpm');
 var la = require('lazy-ass');
 var check = require('check-more-types');
-var parseGithubRepoUrl = require('@bahmutov/parse-github-repo-url');
 var utils = require('./utils');
 
-// working around github-url-to-object used inside get-package-readme
-// that cannot handle www.github.com urls
-// this does NOT work on npm2 where it cannot find github-url-to-object
-// due to multi level folder
-/* eslint no-undef:0 */
-try {
-  require = require('really-need');
-  require('github-url-to-object', {
-    post: function () {
-      return function gh(url) {
-        log('parsing github url %s ourselves', url);
-        var parsed = parseGithubRepoUrl(url);
-        return {
-          user: parsed[0],
-          repo: parsed[1]
-        };
-      };
-    }
-  });
-} catch (err) {
-  // ignore
-}
-
 var Promise = require('bluebird');
-var getReadmeFile = Promise.promisify(require('get-package-readme'));
+var packageJson = require('package-json');
 var simpleGet = require('simple-get');
 
 function get(url) {
@@ -79,6 +55,12 @@ function getReadmeFromGithub(name) {
   return get(fullUrl)
     .catch(function () {
       // probably not found
+      fullUrl = formGithubUrl(parsed, 'readme.md');
+      log('fetching url from', fullUrl);
+      return get(fullUrl);
+    })
+    .catch(function () {
+      // probably not found
       fullUrl = formGithubUrl(parsed, 'readme.markdown');
       log('fetching url from', fullUrl);
       return get(fullUrl);
@@ -115,8 +97,17 @@ function getReadme(name) {
     return getReadmeFromGithub(name);
   }
 
-  log('fetching README for package', name);
-  return getReadmeFile(name);
+  log('fetching README for NPM package', name);
+  return packageJson(name, 'latest')
+    .then(function (json) {
+      console.log('repository', json.repository);
+      if (!json.repository) {
+        throw new Error('Cannot find repository for ' + name);
+      }
+      la(check.unemptyString(json.repository.url),
+        'missing url', json.repository);
+      return getReadmeFromGithub(json.repository.url);
+    });
 }
 
 module.exports = getReadme;

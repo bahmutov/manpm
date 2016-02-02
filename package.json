@@ -54,17 +54,25 @@
     "check-more-types": "2.2.0",
     "debug": "2.2.0",
     "get-package-readme": "1.1.0",
+    "github-readme": "1.0.0",
     "lazy-ass": "1.1.0",
     "lodash": "3.10.1",
     "marked": "0.3.5",
     "marked-terminal": "https://github.com/mikaelbr/marked-terminal.git#35f6ddac9d9f32b11e85ceb6bc5f42642f06e456",
     "marked-to-md": "1.0.1",
-    "really-need": "1.7.2",
+    "package-json": "2.3.0",
     "simple-bin-help": "1.5.0",
     "simple-get": "1.4.3",
     "update-notifier": "0.5.0"
   },
   "preferGlobal": true,
+  "release": {
+    "verifyConditions": {
+      "path": "condition-node-version",
+      "node": "4.2.2",
+      "verbose": true
+    }
+  },
   "config": {
     "pre-git": {
       "commit-msg": "simple",
@@ -87,6 +95,7 @@
   },
   "devDependencies": {
     "ban-sensitive-files": "1.4.0",
+    "condition-node-version": "1.2.0",
     "eslint": "1.10.1",
     "exact-semver": "1.2.0",
     "git-issues": "1.2.0",
