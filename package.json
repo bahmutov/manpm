@@ -16,11 +16,11 @@
     "size": "t=\"$(npm pack .)\"; wc -c \"${t}\"; tar tvf \"${t}\"; rm \"${t}\";",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "next-update": "next-update -k true",
-    "example-npm": "node --harmony bin/manpm.js chalk background",
-    "test-search-in-text": "node --harmony bin/manpm.js chalk cmder",
-    "example-github": "node --harmony bin/manpm.js https://github.com/bahmutov/object-fitter",
-    "example-es6-docs": "node --harmony bin/manpm.js bevacqua/es6 literals",
-    "test-hr": "DEBUG=manpm node --harmony bin/manpm.js hr",
+    "example-npm": "node bin/manpm.js chalk background",
+    "test-search-in-text": "node bin/manpm.js chalk cmder",
+    "example-github": "node bin/manpm.js https://github.com/bahmutov/object-fitter",
+    "example-es6-docs": "node bin/manpm.js bevacqua/es6 literals",
+    "test-hr": "DEBUG=manpm node bin/manpm.js hr",
     "ban": "ban"
   },
   "files": [
@@ -61,7 +61,7 @@
     "marked-terminal": "https://github.com/mikaelbr/marked-terminal.git#35f6ddac9d9f32b11e85ceb6bc5f42642f06e456",
     "marked-to-md": "1.0.1",
     "package-json": "2.3.0",
-    "simple-bin-help": "1.5.0",
+    "simple-bin-help": "1.6.0",
     "simple-get": "1.4.3",
     "update-notifier": "0.5.0"
   },
