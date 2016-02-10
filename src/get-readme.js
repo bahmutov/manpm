@@ -100,7 +100,7 @@ function getReadme(name) {
   log('fetching README for NPM package', name);
   return packageJson(name, 'latest')
     .then(function (json) {
-      console.log('repository', json.repository);
+      log('repository', json.repository);
       if (!json.repository) {
         throw new Error('Cannot find repository for ' + name);
       }
