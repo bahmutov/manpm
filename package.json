@@ -50,7 +50,7 @@
   },
   "homepage": "https://github.com/bahmutov/manpm#readme",
   "dependencies": {
-    "@bahmutov/parse-github-repo-url": "0.0.0",
+    "@bahmutov/parse-github-repo-url": "0.1.0",
     "bluebird": "3.3.3",
     "check-more-types": "2.10.0",
     "debug": "2.2.0",
