@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "mocha src/*-spec.js",
+    "pretest": "npm run lint",
     "lint": "eslint src/*.js bin/*.js",
     "commit": "git-issues && commit-wizard",
     "issues": "git-issues",
@@ -78,7 +79,6 @@
       "commit-msg": "simple",
       "pre-commit": [
         "npm run ban",
-        "npm run lint",
         "npm test",
         "npm run example-npm",
         "npm run example-github",
