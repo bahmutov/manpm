@@ -51,20 +51,20 @@
   "homepage": "https://github.com/bahmutov/manpm#readme",
   "dependencies": {
     "@bahmutov/parse-github-repo-url": "0.1.0",
-    "bluebird": "3.3.3",
-    "check-more-types": "2.10.0",
+    "bluebird": "3.3.4",
+    "check-more-types": "2.15.0",
     "debug": "2.2.0",
     "get-package-readme": "1.2.0",
     "github-readme": "1.0.0",
     "lazy-ass": "1.4.0",
-    "lodash": "4.6.1",
+    "lodash": "4.8.1",
     "marked": "0.3.5",
     "marked-terminal": "https://github.com/mikaelbr/marked-terminal.git#35f6ddac9d9f32b11e85ceb6bc5f42642f06e456",
     "marked-to-md": "1.0.1",
-    "package-json": "2.3.1",
+    "package-json": "2.3.2",
     "simple-bin-help": "1.6.0",
     "simple-get": "2.0.0",
-    "update-notifier": "0.6.1"
+    "update-notifier": "0.6.3"
   },
   "preferGlobal": true,
   "release": {
@@ -96,13 +96,13 @@
   "devDependencies": {
     "ban-sensitive-files": "1.8.2",
     "condition-node-version": "1.2.0",
-    "eslint": "2.3.0",
+    "eslint": "2.6.0",
     "exact-semver": "1.2.0",
     "git-issues": "1.2.0",
     "mocha": "2.4.5",
     "next-update": "1.2.2",
-    "pre-git": "3.4.0",
+    "pre-git": "3.8.3",
     "quote": "0.4.0",
-    "semantic-release": "6.2.0"
+    "semantic-release": "6.2.1"
   }
 }
