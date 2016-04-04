@@ -1,3 +1,5 @@
+'use strict';
+
 var log = require('debug')('manpm');
 var la = require('lazy-ass');
 var check = require('check-more-types');
@@ -22,7 +24,10 @@ function maNpm(options) {
   return getReadme(options.name)
     .then(findSection.bind(null, options))
     .then(printMarkdown)
-    .catch(console.error.bind(console));
+    .catch(function (err) {
+      console.error(err);
+      log(err.stack);
+    });
 }
 
 module.exports = maNpm;

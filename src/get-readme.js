@@ -1,3 +1,5 @@
+'use strict';
+
 var log = require('debug')('manpm');
 var la = require('lazy-ass');
 var check = require('check-more-types');
@@ -16,6 +18,8 @@ function get(url) {
         return reject(err);
       }
       if (res.statusCode !== 200) {
+        log('while fetching from', url, 'got', res.statusCode);
+        log(res);
         return reject(new Error('GET from ' + url + ' status ' + res.statusCode));
       }
       return resolve(data);

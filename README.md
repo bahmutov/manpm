@@ -127,6 +127,10 @@ Just run the tool with `DEBUG=manpm manpm ...` environment setting.
     $ DEBUG=manpm manpm object-fitter
     manpm fetching README for package +0ms object-fitter
 
+Good testing commands:
+
+    DEBUG=manpm npm run example-es6-docs
+
 ## Inspired by the following tools
 
 * [man-n](https://github.com/man-n/man-n)

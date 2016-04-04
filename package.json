@@ -63,7 +63,7 @@
     "marked-to-md": "1.0.1",
     "package-json": "2.3.2",
     "simple-bin-help": "1.6.0",
-    "simple-get": "2.0.0",
+    "simple-get": "1.4.3",
     "update-notifier": "0.6.3"
   },
   "preferGlobal": true,
@@ -91,6 +91,9 @@
       ],
       "post-commit": [],
       "post-merge": []
+    },
+    "next-update": {
+      "skip": "simple-get"
     }
   },
   "devDependencies": {
