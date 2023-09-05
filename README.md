@@ -140,6 +140,10 @@ Good testing commands:
 I wanted something a little more API friendly, like finding and showing
 a README section that talked about a specific API method for example.
 
+## More examples
+
+- 📺 Watch video [Type Placeholders Into The Form: manp and cypress-await example](https://youtu.be/Z4nDKbWMkJc)
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015
